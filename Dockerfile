@@ -25,7 +25,8 @@ RUN buildDeps=" \
     && docker-php-ext-install imap \
     && apt-get purge -y --auto-remove $buildDeps \
     && rm -r /var/lib/apt/lists/* \
-    && a2enmod rewrite
+    && a2enmod rewrite \
+    && echo -e "log_errors = On\nerror_log = /dev/stderr" >> /usr/local/etc/php/conf.d/php.ini
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
