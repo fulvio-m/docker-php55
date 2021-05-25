@@ -20,7 +20,7 @@ RUN buildDeps=" \
         wget \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
-    && docker-php-ext-install bcmath mysql mysqli soap zip \
+    && docker-php-ext-install bcmath mysql mysqli soap zip gd \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
     && apt-get purge -y --auto-remove $buildDeps \
