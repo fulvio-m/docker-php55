@@ -32,5 +32,6 @@ RUN wget --no-check-certificate https://curl.se/ca/cacert.pem -O /etc/ssl/certs/
 
 # Install Composer.
 RUN curl --insecure -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --cafile=/etc/ssl/certs/cacert.pem \
-    && ln -s $(composer config --global home) /root/composer
+    && ln -s $(composer config --global home) /root/composer \
+    && composer config --global cafile /etc/ssl/certs/cacert.pem
 ENV PATH=$PATH:/root/composer/vendor/bin COMPOSER_ALLOW_SUPERUSER=1 
